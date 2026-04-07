@@ -23,7 +23,7 @@ export const CubicGraph = ({
         const centerX = canvas.width / 2;
         const centerY = canvas.height / 2;
 
-        // Lowered scale from 120 to 20 to fit larger coefficients
+        // Lowered scale from 120 to 20 
         const scale = 20;
         const step = 40;
 

@@ -4,6 +4,7 @@ import { CubicGraph } from "./components/CubicGraph";
 import { CubicHistory } from "./components/CubicHistory";
 import { CubicInput } from "./components/CubicInput";
 import { CubicTable } from "./components/CubicTable";
+
 const card =
   "bg-[#132237] shadow-sm p-5 h-full transition hover:shadow-lg hover:-translate-y-1";
 
