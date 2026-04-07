@@ -22,10 +22,14 @@ export const CubicGraph = ({
 
         const centerX = canvas.width / 2;
         const centerY = canvas.height / 2;
-        const scale = 120;
+
+        // Lowered scale from 120 to 20 to fit larger coefficients
+        const scale = 20;
         const step = 40;
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // --- Draw Grid ---
         ctx.strokeStyle = "#1f376a";
         ctx.lineWidth = 1;
 
@@ -43,35 +47,33 @@ export const CubicGraph = ({
             ctx.stroke();
         }
 
+        // --- Draw Axes ---
         ctx.strokeStyle = "#00d4ff";
-        ctx.lineWidth = 3;
+        ctx.lineWidth = 2;
         ctx.beginPath();
-        // x-axis
         ctx.moveTo(0, centerY);
         ctx.lineTo(canvas.width, centerY);
-        // y-axis
         ctx.moveTo(centerX, 0);
         ctx.lineTo(centerX, canvas.height);
         ctx.stroke();
-        // graph
+
+        // --- Draw Plot ---
         ctx.save();
         ctx.translate(centerX, centerY);
 
         ctx.beginPath();
+        ctx.strokeStyle = "#c19d43";
+        ctx.lineWidth = 4;
+
         let first = true;
+        // Increase range to ensure we see the curve across the whole canvas
+        const range = centerX / scale;
 
-
-        const range = canvas.width / (scale * 2) + 1;
-
-        for (let x = -range; x <= range; x += 0.01) {
+        for (let x = -range; x <= range; x += 0.05) {
             const y = a * x ** 3 + b * x ** 2 + c * x + d;
 
             const canvasX = x * scale;
             const canvasY = -y * scale;
-            if (canvasY < -centerY - 100 || canvasY > centerY + 100) {
-                first = true;
-                continue;
-            }
 
             if (first) {
                 ctx.moveTo(canvasX, canvasY);
@@ -81,8 +83,6 @@ export const CubicGraph = ({
             }
         }
 
-        ctx.strokeStyle = "#c19d43";
-        ctx.lineWidth = 4;
         ctx.stroke();
         ctx.restore();
     }, [a, b, c, d]);
@@ -90,7 +90,6 @@ export const CubicGraph = ({
     return (
         <div className="flex justify-center mt-10 px-4">
             <div className="bg-transparent border border-[#1f376a] shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
-
                 <canvas
                     ref={canvasRef}
                     width={800}
