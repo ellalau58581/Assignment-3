@@ -5,7 +5,7 @@ import { CubicHistory } from "./components/CubicHistory";
 import { CubicInput } from "./components/CubicInput";
 import { CubicTable } from "./components/CubicTable";
 const card =
-  "bg-[#132237] border-none rounded-none shadow-sm p-5 h-full transition hover:shadow-lg hover:-translate-y-1";
+  "bg-[#132237] shadow-sm p-5 h-full transition hover:shadow-lg hover:-translate-y-1";
 
 export const App = () => {
   const [a, setA] = useState<number>(1);

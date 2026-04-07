@@ -3,27 +3,17 @@ type CubicInputProps = {
     b: number;
     c: number;
     d: number;
-    setA: (a: number) => void;
-    setB: (b: number) => void;
-    setC: (c: number) => void;
-    setD: (d: number) => void;
-};
+    setA: (val: number) => void;
+    setB: (val: number) => void;
+    setC: (val: number) => void;
+    setD: (val: number) => void;
 
-export const CubicInput = ({
-    a,
-    b,
-    c,
-    d,
-    setA,
-    setB,
-    setC,
-    setD,
+}; export const CubicInput = ({
+    a, b, c, d,
+    setA, setB, setC, setD,
 }: CubicInputProps) => {
     return (
         <div className="w-full">
-            <h2 className="text-xl font-semibold text-[#eff0f1] mb-4">
-                Coefficients
-            </h2>
 
             <form
                 onSubmit={(e) => e.preventDefault()}
@@ -42,21 +32,27 @@ export const CubicInput = ({
 
                         <input
                             type="number"
-                            value={value}
-                            onChange={(e) => setter(Number(e.target.value))}
+                            // Shows empty string when value is 0
+                            value={value === 0 ? "" : value}
+                            placeholder="0"
+                            onChange={(e) => {
+                                const val = e.target.value;
+                                setter(val === "" ? 0 : Number(val));
+                            }}
                             className="
-                bg-[#1f376a]
-                border border-[#3a73b3]
-                rounded-none
-                text-[#eff0f1]
-                p-3
-                placeholder-[#9aa68c]
-                focus:outline-none
-                focus:ring-2
-                focus:ring-[#a3b18a]
-                focus:bg-white
-                transition
-            "
+                                bg-[#1f376a]
+                                border border-[#3a73b3]
+                                rounded-none
+                                text-[#eff0f1]
+                                p-3
+                                placeholder-[#9aa68c]
+                                focus:outline-none
+                                focus:ring-2
+                                focus:ring-[#a3b18a]
+                                focus:bg-white
+                                focus:text-black
+                                transition
+                            "
                         />
                     </div>
                 ))}

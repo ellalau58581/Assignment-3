@@ -19,9 +19,6 @@ export const CubicHistory = ({
 
     return (
         <div className="p-5 bg-transparent rounded-none shadow-md border border-[#1f376a] max-w-md">
-            <h1 className="text-xl font-semibold text-[#eff0f1] mb-3">
-                History
-            </h1>
 
             <button
                 type="submit"
